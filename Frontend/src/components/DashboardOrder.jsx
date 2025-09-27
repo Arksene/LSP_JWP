@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { getAllOrder, updateOrder } from "../api/orderApi";
 
@@ -41,7 +40,7 @@ export default function DashboardOrder() {
       setSuccess("Order berhasil di-approve!");
       const data = await getAllOrder();
       setOrders(data);
-      setOpenIndex(null);
+      setOpenDetailIndex({}); // tutup semua detail setelah approve
     } catch (err) {
       setError(err.message);
     }
@@ -92,7 +91,9 @@ export default function DashboardOrder() {
                     className="mt-4 w-full py-2 rounded-xl bg-gradient-to-r from-green-500 to-green-700 text-white font-bold shadow hover:from-green-600 hover:to-green-800 transition font-serif text-lg border-2 border-green-200"
                     onClick={() => handleApprove(order.id)}
                     disabled={approving || order.status.toLowerCase() === "approve"}
-                  >{order.status.toLowerCase() === "approve" ? "Sudah Di-approve" : (approving ? "Memproses..." : "Approve Order")}</button>
+                  >
+                    {order.status.toLowerCase() === "approve" ? "Sudah Di-approve" : (approving ? "Memproses..." : "Approve Order")}
+                  </button>
                 </div>
               )}
             </div>
