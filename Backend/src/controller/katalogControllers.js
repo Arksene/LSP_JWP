@@ -47,7 +47,7 @@ export async function deleteKatalog(req, res) {
     }
   }
 
-  export async function updateKatalog(req, res) {
+export async function updateKatalog(req, res) {
     const { id } = req.params;
     const { namaKatalog, deskripsi, harga } = req.body;
     try {
